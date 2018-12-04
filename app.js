@@ -5,6 +5,7 @@ require('dotenv').config();
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var expressValidator = require('express-validator');
+var fileUpload = require('express-fileupload');
 
 //Connect to db
 mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true });
@@ -26,6 +27,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //Set global errors variable
 app.locals.errors = null;
+
+// Express FileUpload middleware
+app.use(fileUpload());
 
 //Body Parser Middleware
 //
@@ -71,9 +75,11 @@ app.use(function (req, res, next) {
 var pages = require('./routes/pages');
 var adminPages = require('./routes/admin_pages');
 var adminCategories = require('./routes/admin_categories');
+var adminProducts = require('./routes/admin_products');
 
 app.use('/admin/pages', adminPages);
 app.use('/admin/categories', adminCategories);
+app.use('/admin/Products', adminProducts);
 app.use('/', pages);
 
 var port = 3000 || process.env.PORT;
