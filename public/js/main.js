@@ -4,7 +4,7 @@ $(function() {
     }
 
     $('a.confirmDeletion').on('click', function() {
-        if(!confirm('Click OK to delete this page, otherwise click CANCEL')) return false;
+        if(!confirm('Confirm Deletion')) return false;
     });
 
 
